@@ -1,20 +1,18 @@
 ---
-- name: Customer Deployment
-  hosts: localhost
+- hosts: localhost
   connection: local
   gather_facts: false
 
-  # --- THE HIJACK HAPPENS HERE ---
-  # Ansible checks these collections in order.
+  # Define where to look for modules
   collections:
-    - cust.overrides    # 1. Check Customer Repo first!
-    - osac.demo         # 2. Fallback to Vendor Repo
+    - cust.overrides  # <--- Contains the Customer's 'fancy_echo'
+    - osac.demo       # <--- Contains the Vendor's Role
+
+  vars:
+    # THE DYNAMIC POINTER
+    # We explicitly tell the Role: "Don't use your tool. Use mine."
+    provider_driver: "cust.overrides.fancy_echo_v1"
 
   tasks:
-    # We call the Vendor's role. 
-    # The Vendor's role calls 'fancy_echo'.
-    # Because of the list above, Ansible uses OUR 'fancy_echo'.
     - import_role:
         name: osac.demo.shadow_test
-      vars:
-        my_name: "Customer"
