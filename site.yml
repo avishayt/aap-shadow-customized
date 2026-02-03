@@ -1,19 +1,22 @@
 ---
-- hosts: localhost
+- name: Customer Deployment
+  hosts: localhost
   connection: local
   gather_facts: false
 
-  # Define where to look for modules
   collections:
-    - cust.overrides  # <--- Contains the Customer's 'fancy_echo'
-    - osac.demo       # <--- Contains the Vendor's Role
-
-  vars:
-    # THE DYNAMIC POINTER
-    # We explicitly tell the Role: "Don't use your tool. Use mine."
-    fancy_echo_v1_driver: "cust.overrides.fancy_echo_v1"
-    my_name: "Hijack Master"
+    - osac.demo
 
   tasks:
     - import_role:
         name: osac.demo.shadow_test
+      vars:
+        my_name: "Hijack Master"
+
+        # THE POINTERS
+        # 1. We tell the vendor to look for a role in the current project root
+        #    (Using a dot '.' often signifies 'current project' or strict pathing)
+        provider_driver_role: "." 
+
+        # 2. We tell it which file to load
+        provider_driver_task: "override_driver.yml"
