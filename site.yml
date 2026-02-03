@@ -4,11 +4,16 @@
   connection: local
   gather_facts: false
 
-  # We still need this to find the VENDOR role
+  # --- THE HIJACK HAPPENS HERE ---
+  # Ansible checks these collections in order.
   collections:
-    - osac.demo
+    - cust.overrides    # 1. Check Customer Repo first!
+    - osac.demo         # 2. Fallback to Vendor Repo
 
   tasks:
+    # We call the Vendor's role. 
+    # The Vendor's role calls 'fancy_echo'.
+    # Because of the list above, Ansible uses OUR 'fancy_echo'.
     - import_role:
         name: osac.demo.shadow_test
       vars:
