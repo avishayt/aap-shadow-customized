@@ -1,0 +1,6 @@
+---
+collections:
+  # Vendor product - required so osac.demo.shadow_test and fancy_echo_v1 are available
+  - name: https://github.com/avishayt/aap-shadow-test.git
+    type: git
+    version: master
