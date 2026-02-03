@@ -1,0 +1,20 @@
+---
+- name: Customer Deployment
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  # --- THE HIJACK HAPPENS HERE ---
+  # Ansible checks these collections in order.
+  collections:
+    - cust.overrides    # 1. Check Customer Repo first!
+    - osac.demo         # 2. Fallback to Vendor Repo
+
+  tasks:
+    # We call the Vendor's role. 
+    # The Vendor's role calls 'fancy_echo'.
+    # Because of the list above, Ansible uses OUR 'fancy_echo'.
+    - import_role:
+        name: osac.demo.shadow_test
+      vars:
+        my_name: "Customer"

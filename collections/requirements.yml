@@ -1,0 +1,6 @@
+---
+collections:
+  # This pulls in the immutable Vendor code
+  - name: https://github.com/avishayt/aap-shadow-test.git
+    type: git
+    version: master
