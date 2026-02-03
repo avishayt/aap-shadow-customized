@@ -12,6 +12,7 @@
     # THE DYNAMIC POINTER
     # We explicitly tell the Role: "Don't use your tool. Use mine."
     provider_driver: "cust.overrides.fancy_echo_v1"
+    my_name: "Hijack Master"
 
   tasks:
     - import_role:
