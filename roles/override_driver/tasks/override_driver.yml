@@ -4,3 +4,7 @@
   fancy_echo_v1:
     msg: "{{ driver_msg }}"
   register: output
+
+- name: Show driver output
+  debug:
+    msg: "{{ output.result_msg }}"
