@@ -16,7 +16,7 @@
         # THE POINTERS
         # 1. We tell the vendor to look for a role in the current project root
         #    (Using a dot '.' often signifies 'current project' or strict pathing)
-        provider_driver_role: "." 
+        fancy_echo_driver_role: "." 
 
         # 2. We tell it which file to load
-        provider_driver_task: "override_driver.yml"
+        fancy_echo_driver_task: "override_driver.yml"
