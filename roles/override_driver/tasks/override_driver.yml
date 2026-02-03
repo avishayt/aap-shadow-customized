@@ -1,7 +1,7 @@
 ---
 - name: Customer Hijack Execution
-  # We call the module located in Repo B's library/ folder
-  fancy_echo_v1:
+  # Use FQCN so the vendor module resolves from the embedded collection
+  osac.demo.fancy_echo_v1:
     msg: "{{ driver_msg }}"
   register: output
 
