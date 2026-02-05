@@ -1,6 +1,7 @@
 ---
 collections:
-  # Vendor product - required so osac.demo.shadow_test and fancy_echo_v1 are available
-  - name: https://github.com/avishayt/aap-shadow-test.git
+  # Vendor collection (git); name=FQCN, source=URL; fragment points to collection subdir
+  - name: osac.demo
+    source: "https://github.com/avishayt/aap-shadow-test.git#/ansible_collections/osac/demo/"
     type: git
     version: master

@@ -1,6 +1,7 @@
 ---
 collections:
-  # This pulls in the immutable Vendor code
-  - name: https://github.com/avishayt/aap-shadow-test.git
+  # Vendor collection (git); name=FQCN, source=URL; fragment points to collection subdir
+  - name: osac.demo
+    source: "https://github.com/avishayt/aap-shadow-test.git#/ansible_collections/osac/demo/"
     type: git
     version: master
