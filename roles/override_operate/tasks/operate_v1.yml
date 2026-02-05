@@ -1,0 +1,9 @@
+---
+# Override: multiply instead of add (vendor's operate_v1 adds)
+- name: operate_v1 - Multiply the two numbers
+  set_fact:
+    operate_result: "{{ number_a | int * number_b | int }}"
+
+- name: operate_v1 - Record result for next step
+  debug:
+    msg: "operate_v1 result (customized): {{ operate_result }}"
