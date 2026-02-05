@@ -1,7 +1,6 @@
 ---
-collections:
-  # Vendor collection (git); name=FQCN, source=URL; fragment points to collection subdir
-  - name: osac.demo
-    source: "https://github.com/avishayt/aap-shadow-test.git#/ansible_collections/osac/demo/"
-    type: git
-    version: master
+# Collections are installed from collections/requirements.yml (AAP runs that step first).
+# Root requirements.yml is left minimal so "ansible-galaxy install -r requirements.yml"
+# does not parse version: master as LooseVersion (which fails on branch names).
+roles: []
+collections: []
