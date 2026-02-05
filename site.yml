@@ -1,24 +1,8 @@
 ---
-# Same flow as vendor: operate_v1 -> output_v1, but step 1 uses our override (multiply)
-- name: Customer Deployment
-  hosts: localhost
-  connection: local
-  gather_facts: false
-
+# Inherit flow from vendor; override step 1 (operate_v1) with our multiply role
+- name: Customer deployment
+  ansible.builtin.import_playbook: osac.demo.site
   vars:
-    number_a: "{{ (template_parameters | default({})).number_a | default(1) }}"
-    number_b: "{{ (template_parameters | default({})).number_b | default(2) }}"
-
-  collections:
-    - osac.demo
-
-  tasks:
-    - name: Step 1 - operate_v1 (customized multiply)
-      include_role:
-        name: override_operate
-        tasks_from: operate_v1.yml
-
-    - name: Step 2 - output_v1 (vendor)
-      include_role:
-        name: osac.demo.shadow_test
-        tasks_from: output_v1.yml
+    add_role_override:
+      name: override_operate
+      tasks_from: operate_v1.yml
